@@ -1,0 +1,13 @@
+.content{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    .title{
+        font-size: 30px;
+        font-weight: 900;
+        margin-bottom: 20px;
+    }
+    .content__items{
+        display: flex;
+        flex-wrap: wrap;
+    }
+}

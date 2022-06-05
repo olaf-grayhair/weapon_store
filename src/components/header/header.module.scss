@@ -1,0 +1,24 @@
+.header{
+    background-color: cadetblue;
+    padding: 15px 20px;
+
+    .logo{
+        display: block;
+        height: 70px;
+        width: 90px;
+        background-color: aliceblue;
+        background-image: url('./../../assets/logo.png');
+        background-color: cadetblue;
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        position: relative;
+        
+        &::before{
+            content: 'Weapon';
+            position: absolute;
+            top: 28px;
+            right: 14px;
+        }
+    }
+}
