@@ -16,7 +16,7 @@ const Home = () => {
 
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
       <div className={style.content}>
         <h1 className={style.title}>Weapons</h1>
         <div className={style.content__items}>
