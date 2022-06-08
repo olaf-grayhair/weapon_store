@@ -2,6 +2,7 @@ import React from 'react';
 import style from "./header.module.scss";
 import Navbar from './Navbar';
 import { Link } from "react-router-dom";
+import Search from "./../search/Search"
 
 const Header = () => {
     return (
@@ -10,7 +11,7 @@ const Header = () => {
                 <div className={style.logo}>
                 </div>
             </Link>
-            <input type="text" />
+            <Search/>
             <Link to="/cart">
                 <div className={style.cart}>
                     <span className={style.price}>1000</span>
