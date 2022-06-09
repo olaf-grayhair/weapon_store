@@ -2,22 +2,30 @@ import { React, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Card from "../../components/card-weapon/Card";
 import Header from "../../components/header/Header";
+import Pagination from "../../components/pagination/Pagination";
+import Sceleton from "../../components/sceleton/Sceleton";
 import { fetchWeapons } from "../../redux/action-creators/weapons";
 
 import style from "./home.module.scss";
 
+import { curentPageAction } from "../../redux/reducers/weaponsReducer";
 const Home = () => {
   const weapons = useSelector((state) => state.weapons.items);
+  const loading = useSelector((state) => state.weapons.loading);
+  //ОБЬЕДЕНИТЬ useSElector ?
   const filter = useSelector((state) => state.filters.sortByPrice)
-  const category = useSelector((state) => state.filters.category)///ОБЬЕДЕНИТЬ useSElector ?
-
+  const search = useSelector((state) => state.filters.search)
+  const category = useSelector((state) => state.filters.category)
+  ///ОБЬЕДЕНИТЬ useSElector ?
+  const totalCount = useSelector((state) => state.weapons.totalCount);
+  const perPage = useSelector((state) => state.weapons.perPage);
+  const currentPage = useSelector((state) => state.weapons.currentPage);
+ ///ОБЬЕДЕНИТЬ useSElector ?
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchWeapons(category));
-  }, [category]);///need dispatch?
-
-  console.log(filter, category);
+    dispatch(fetchWeapons(category, search));
+  }, [category, search]);///need dispatch?
 
   const sorting = () => {
     const sortedWeapons = [...weapons]
@@ -34,17 +42,25 @@ const Home = () => {
     return sortedWeapons
   }
 
+  const items = sorting().map((el, index) => <Card key={index} {...el}/>);
+  const skeleton = sorting().map((el, index) => <Sceleton key={index}/>);
+
   return (
     <div>
       {/* <Header /> */}
       <div className={style.content}>
         <h1 className={style.title}>Weapons</h1>
         <div className={style.content__items}>
-          {sorting().map((el, index) => (
-            <Card key={index} {...el}/>
-          ))}
+          {loading ? skeleton : items}
         </div>
       </div>
+      <Pagination 
+        // dispatch={dispatch}
+        // onClick={dispatch(curentPageAction())}
+        currentPage={currentPage}
+        totalCount={totalCount}
+        perPage={perPage}/>
+
     </div>
   );
 };

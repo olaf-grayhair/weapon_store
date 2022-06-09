@@ -1,0 +1,20 @@
+
+.wrap{
+    display: flex;
+    align-items: center ;
+    justify-content: center;
+    .pagination, .pagination__active{
+        cursor: pointer;
+        padding: 5px;
+        font-size: 20px;
+        border: 2px solid black;
+    }
+    .pagination:not(:last-child), .pagination__active:not(:last-child) {
+        margin-right: 10px;
+    }
+    .pagination:hover, .pagination__active{
+        background-color: black;
+        color: white;
+        border: 2px solid white;
+    }
+}
