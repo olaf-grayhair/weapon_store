@@ -1,0 +1,43 @@
+.cart{
+    padding: 40px 0;
+    max-width: 800px;
+    margin: 0 auto;
+    .title{
+
+    }
+    .wrapper{
+        margin-top: 20px;
+        .item{
+            border-radius: 10px;
+            background-color: #EFE1CE;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .img{
+                width: 200px;
+                height: 140px;
+                object-fit: cover;
+            }
+            .name{
+                font-size: 26px;
+                width: 260px;
+            }
+            .count{
+                color: red;
+                font-size: 22px;
+                font-weight: 700;
+            }
+            .price{
+
+            }
+        }
+    }
+    .row{
+        margin-top: 40px;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 20px;
+    }
+}

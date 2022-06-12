@@ -9,11 +9,11 @@ import { setAction } from '../../redux/reducers/filters';
 const Navbar = () => {
     const categories = ['Все','Алебарда', 'Арбалет', 'Бердыш', 'Бродэкс', 'Гладиус', 'Древко', 'Каролинг', 'Катана', 'Кинжал', 'Клинок', 'Кнут', 'Меч']
     const [state, setstate] = useState('Все');
-
     const dispatch = useDispatch()
+    const category = state === 'Все' ? '' : `&category=${state}`
 
     useEffect(() => {
-        dispatch(setAction(state))
+        dispatch(setAction(category))
     }, [state]);
 
     return (

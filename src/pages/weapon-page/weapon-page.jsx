@@ -1,9 +1,8 @@
 import {React, useState, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { fetchOnePage } from "../../redux/action-creators/weapon";
-
 import style from "./weapon.module.scss";
+import { fetchOnePage } from "../../redux/action-creators/weapon";
 
 const WeaponPage = () => {
     const [state, setState] = useState(1);
@@ -11,6 +10,7 @@ const WeaponPage = () => {
     const { id } = useParams()
     const dispatch = useDispatch()
     const { items, loading } = useSelector(state => state.onePage)
+
 
     useEffect(() => {
         dispatch(fetchOnePage(id))

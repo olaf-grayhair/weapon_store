@@ -7,14 +7,14 @@ const defaultState = {
     items: [],
     loading: false,
     currentPage: 1,
-    perPage: 10,
+    perPage: 8,
     totalCount: 0
 }
 
 export const weaponsReducer = (state = defaultState, action) => {
     switch(action.type) {
         case FETCH_ITEMS:
-            return {...state, items: action.payload, totalCount: action.payload.length}
+            return {...state, items: action.payload, totalCount: 100}
 
         case LOAD_ITEMS:
             return {...state, loading: action.payload}

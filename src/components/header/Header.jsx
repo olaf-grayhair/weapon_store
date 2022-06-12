@@ -3,6 +3,7 @@ import style from "./header.module.scss";
 import Navbar from './Navbar';
 import { Link } from "react-router-dom";
 import Search from "./../search/Search"
+import CartItem from './cart/CartItem';
 
 const Header = () => {
     return (
@@ -12,12 +13,7 @@ const Header = () => {
                 </div>
             </Link>
             <Search/>
-            <Link to="/cart">
-                <div className={style.cart}>
-                    <span className={style.price}>1000</span>
-                    <span className={style.items}>items</span>
-                </div>
-            </Link>
+            <CartItem/>
 
         </div>
     );

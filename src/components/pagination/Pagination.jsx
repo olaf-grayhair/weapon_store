@@ -7,8 +7,9 @@ import { curentPageAction } from "../../redux/reducers/weaponsReducer";
 
 const Pagination = ({totalCount, perPage, currentPage, onClick}) => {
 const [state, setstate] = useState(1);
-
 const dispatch = useDispatch()
+
+console.log(`state: ${state}\ncurPage: ${currentPage}`);
 
 useEffect(() => {
     dispatch(curentPageAction(state))

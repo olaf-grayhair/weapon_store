@@ -6,9 +6,10 @@ import style from "./search.module.scss"
 const Search = () => {
     const [state, setstate] = useState('');
     const dispatch = useDispatch()
-
+    const search = state === '' ? '' : `&search=${state}`
+    
     useEffect(() => {
-        dispatch(searchAction(state))
+        dispatch(searchAction(search))
     }, [state]);
 
     return (

@@ -24,8 +24,8 @@ const Home = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchWeapons(category, search));
-  }, [category, search]);///need dispatch?
+    dispatch(fetchWeapons(category, search, currentPage, perPage));
+  }, [dispatch, category, search, currentPage]);///ПОЧЕМУ 2 РЕНДЕРА?
 
   const sorting = () => {
     const sortedWeapons = [...weapons]
@@ -43,7 +43,7 @@ const Home = () => {
   }
 
   const items = sorting().map((el, index) => <Card key={index} {...el}/>);
-  const skeleton = sorting().map((el, index) => <Sceleton key={index}/>);
+  const skeleton = sorting().map((el, index) => <Sceleton key={el}/>);
 
   return (
     <div>

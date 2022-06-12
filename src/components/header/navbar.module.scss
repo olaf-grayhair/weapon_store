@@ -7,7 +7,7 @@
         display: flex;
         margin-top: 20px;
         
-        .item{
+        .item, .item__active{
             font-size: 14px;
             min-width: 80px;
             color: white;
@@ -16,6 +16,7 @@
             border-radius: 10px;
             text-align: center;
             cursor: pointer;
+            font-weight: 600;
             transition: all ease .4s;
             &:hover{
                 background-color: white;
@@ -28,18 +29,8 @@
     
         }
         .item__active{
-            font-size: 14px;
-            min-width: 80px;
-            padding: 10px;
-            border-radius: 10px;
-            text-align: center;
-            cursor: pointer;
             background-color: white;
             color: black;
-            font-weight: 600;
-            &:not(:last-child){
-                margin-right: 10px;
-            }
         }
     }
 }
