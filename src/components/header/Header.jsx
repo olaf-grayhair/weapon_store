@@ -14,7 +14,6 @@ const Header = () => {
             </Link>
             <Search/>
             <CartItem/>
-
         </div>
     );
 }

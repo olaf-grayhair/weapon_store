@@ -42,8 +42,8 @@ const Home = () => {
     return sortedWeapons
   }
 
-  const items = sorting().map((el, index) => <Card key={index} {...el}/>);
-  const skeleton = sorting().map((el, index) => <Sceleton key={el}/>);
+  const items = sorting().map((el, index) => <Card key={el.id} {...el}/>);
+  const skeleton = sorting().map((el, index) => <Sceleton key={index}/>);
 
   return (
     <div>
@@ -55,8 +55,6 @@ const Home = () => {
         </div>
       </div>
       <Pagination 
-        // dispatch={dispatch}
-        // onClick={dispatch(curentPageAction())}
         currentPage={currentPage}
         totalCount={totalCount}
         perPage={perPage}/>

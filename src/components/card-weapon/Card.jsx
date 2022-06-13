@@ -19,7 +19,7 @@ const Card = ({id, img, name, price, text, titel, url, available}) => {
     name,
     available,
     price,
-    count: 0,
+    count: 1,
   }
   
   const addToCart = () => {

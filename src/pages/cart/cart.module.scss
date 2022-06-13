@@ -1,7 +1,19 @@
 .cart{
     padding: 40px 0;
-    max-width: 800px;
+    max-width: 840px;
     margin: 0 auto;
+
+    .popup{
+        width: 400px;
+        margin: 40px auto;
+        .popup__title{
+            margin-bottom: 40px;
+            text-align: center;
+            font-size: 30px;
+        }
+        .crusade{
+        }
+    }
     .title{
 
     }
@@ -10,7 +22,7 @@
         .item{
             border-radius: 10px;
             background-color: #EFE1CE;
-            padding: 10px 20px;
+            padding: 10px 10px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -21,8 +33,8 @@
                 object-fit: cover;
             }
             .name{
-                font-size: 26px;
-                width: 260px;
+                font-size: 22px;
+                width: 24%;
             }
             .count{
                 color: red;
@@ -34,10 +46,13 @@
             }
         }
     }
-    .row{
+    .row__btn, .one__btn{
         margin-top: 40px;
         display: flex;
         justify-content: space-between;
         padding: 0 20px;
+    }
+    .one__btn{
+        justify-content: center;
     }
 }

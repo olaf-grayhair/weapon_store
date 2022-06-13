@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import style from "./weapon.module.scss";
 import { fetchOnePage } from "../../redux/action-creators/weapon";
+import Button from "../../components/UI/Button";
 
 const WeaponPage = () => {
     const [state, setState] = useState(1);
@@ -72,7 +73,7 @@ const WeaponPage = () => {
             : <b>{price} Грн</b>
             }
             
-            <button className={style.btn}>add to cart</button>
+            <Button name={'Купить'}/>
           </div>
         </div>
       </div>

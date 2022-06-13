@@ -3,6 +3,7 @@ import Filter from '../filter/Filter';
 import style from "./navbar.module.scss";
 import { useDispatch } from 'react-redux';
 import { setAction } from '../../redux/reducers/filters';
+import Available from '../product-available/Available';
 
 
 
@@ -29,6 +30,7 @@ const Navbar = () => {
                 >{el}</li>
             ))}
             </ul>
+            <Available/>
             <Filter/>
         </div>
     );
