@@ -6,7 +6,19 @@ import style from './cartItem.module.scss'
 const CartItem = () => {
     const date = useSelector(state => state.cart)
 
-    console.log(date, 'date.price');
+    // const priceAndCount = () => {
+    //   const countItems = date.items.map(el => el.count)
+    //   return countItems.length > 0 ? countItems.reduce((a, b) => a + b) : []
+    // }
+    // console.log(priceAndCount(), 'function price');
+
+
+    const countItems = date.items.map(el => el.price * el.count)
+    const res = countItems.length > 0 ? countItems.reduce((a, b) => a + b) : []
+    console.log(countItems, 'map');
+    console.log(res, date.priceCount, 'reduce');
+
+
   return (
     <Link to="/cart">
       <div className={style.cart}>

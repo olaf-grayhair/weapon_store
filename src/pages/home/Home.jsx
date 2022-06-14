@@ -16,16 +16,18 @@ const Home = () => {
   const filter = useSelector((state) => state.filters.sortByPrice)
   const search = useSelector((state) => state.filters.search)
   const category = useSelector((state) => state.filters.category)
+
+  const available = useSelector((state) => state.filters.available)
   ///ОБЬЕДЕНИТЬ useSElector ?
   const totalCount = useSelector((state) => state.weapons.totalCount);
   const perPage = useSelector((state) => state.weapons.perPage);
   const currentPage = useSelector((state) => state.weapons.currentPage);
  ///ОБЬЕДЕНИТЬ useSElector ?
   const dispatch = useDispatch();
-
+  // console.log(available);
   useEffect(() => {
-    dispatch(fetchWeapons(category, search, currentPage, perPage));
-  }, [dispatch, category, search, currentPage]);///ПОЧЕМУ 2 РЕНДЕРА?
+    dispatch(fetchWeapons(category, search, currentPage, perPage, available));
+  }, [dispatch, category, search, currentPage, available]);///ПОЧЕМУ 2 РЕНДЕРА?
 
   const sorting = () => {
     const sortedWeapons = [...weapons]

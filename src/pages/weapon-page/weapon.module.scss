@@ -35,16 +35,25 @@
 
             .buyBlock{
                 display: flex;
-                justify-content: space-between;
                 align-items: center;
                 width: 70%;
                 position: relative;
+
+                .available{
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    b{
+                        margin-right: 60px;
+                    }
+                }
                 .inp{
                     width: 70px;
                     height: 50px;
                     padding: 5px;
                     border-width: 3px;
                     border-color: #7a2b05;
+                    margin-right: 60px;
                 }
                 .arrup{
                     width: 24px;

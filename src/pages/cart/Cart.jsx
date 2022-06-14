@@ -1,53 +1,74 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import style from "./cart.module.scss";
 
-import crusade from "./../../assets/cart.png"
+import crusade from "./../../assets/cart.png";
 import Button from "../../components/UI/Button";
 import BuyBlock from "../../components/UI/input/BuyBlock";
+import {
+  clearCartAction,
+  increaseAction,
+  decreaseAction,
+} from "../../redux/reducers/cartReducer";
 
 const Cart = () => {
   const cards = useSelector((state) => state.cart.items);
+  const dispatch = useDispatch();
+
+  const clearCart = (id) => {
+    dispatch(clearCartAction(id));
+  };
+
+  const increasePrice = (id) => {
+    dispatch(increaseAction(id));
+  };
+
+  const decreasePrice = (id) => {
+    dispatch(decreaseAction(id));
+    // id > 0 ? dispatch(decreaseAction(id)) : dispatch(decreaseAction());
+  };
 
   const cartItem = cards.map((el, index) => (
     <div className={style.wrapper} key={el.id + index}>
       <div className={style.item}>
-        <img
-          src={el.img}
-          alt=""
-          className={style.img}
-        />
+        <img src={el.img} alt="" className={style.img} />
         <h3 className={style.name}>{el.name}</h3>
-        {/* <span className={style.count}>{el.count}</span>
-        <span className={style.count}>{el.available}</span>
-        <b className={style.price}>{el.price}</b>
-        <Button name={"x"} /> */}
-        <BuyBlock {...el}/>
+        <BuyBlock
+          {...el}
+          increasePrice={increasePrice}
+          decreasePrice={decreasePrice}
+        />
       </div>
     </div>
   ));
-  console.log(cartItem, 'cart !');
+  console.log(cartItem, "cart !");
 
   return (
     <div className={style.cart}>
       <h2 className={style.title}>Корзина</h2>
-      {cartItem < 1 
-      ? <div className={style.popup}>
+      {cartItem < 1 ? (
+        <div className={style.popup}>
           <h3 className={style.popup__title}>Корзина пустая...</h3>
           <img className={style.crusade} src={crusade} alt="" />
-      </div>
-      : cartItem
-     }
-     {cartItem < 1 
-     ?   <div className={style.one__btn}>
-          <Button name={"Вернуться назад"} />
         </div>
-
-     :  <div className={style.row__btn}>
-          <Button name={"Вернуться назад"} />
-          <Button name={"Очистить корзину"} />
+      ) : (
+        cartItem
+      )}
+      {cartItem < 1 ? (
+        <div className={style.one__btn}>
+          <Link to="/">
+            <Button name={"Вернуться назад"} />
+          </Link>
         </div>
-    }
+      ) : (
+        <div className={style.row__btn}>
+          <Link to="/">
+            <Button name={"Вернуться назад"} />
+          </Link>
+          <Button name={"Очистить корзину"} action={clearCart} />
+        </div>
+      )}
     </div>
   );
 };

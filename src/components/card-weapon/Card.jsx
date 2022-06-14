@@ -37,13 +37,24 @@ const Card = ({id, img, name, price, text, titel, url, available}) => {
     </Link>
       <h3 className={style.titel}>{name}</h3>
       <b className={style.price}>{price} грн</b>
-      <div className={style.header}>
+      {/* <div className={style.header}>
         {Number.isInteger(available)
           ? <span className={style.avail}>в наличии: <b>{available} шт</b></span>
           : <span className={style.avail}>Нет в наличии</span>
         }
-        <Button name={'Купить'} action={addToCart}/>
-      </div>
+        <Button name={'Купить'} action={addToCart} bool/>
+      </div> */}
+      {Number.isInteger(available)
+      ? <div className={style.header}>
+          <span className={style.avail}>в наличии: <b>{available} шт</b></span>
+          <Button name={'Купить'} action={addToCart} bool={false}/>
+        </div>
+
+      : <div className={style.header}>
+          <span className={style.avail}>Нет в наличии</span>
+          <Button name={'Продано'} action={addToCart} bool={true}/>
+        </div>
+      }
     </div>
   );
 };

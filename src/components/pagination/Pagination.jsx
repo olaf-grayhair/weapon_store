@@ -9,13 +9,13 @@ const Pagination = ({totalCount, perPage, currentPage, onClick}) => {
 const [state, setstate] = useState(1);
 const dispatch = useDispatch()
 
-console.log(`state: ${state}\ncurPage: ${currentPage}`);
+// console.log(`state: ${state}\ncurPage: ${currentPage}`);
 
 useEffect(() => {
     dispatch(curentPageAction(state))
 }, [state]);
 
-console.log(state);
+// console.log(state);
   const pages = pagination(totalCount, perPage).map((el, index) => (
     <span className={currentPage === el 
         ? style.pagination__active
