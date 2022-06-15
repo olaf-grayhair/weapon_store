@@ -19,13 +19,17 @@ export const cartReducer = (state = defaultState, action) => {
 
             const inCart = state.items.find(el => 
                 el.id === action.payload.id ? true : false)///РАЗБЕРИСЬ?
-
             return {
                 ...state,
                 items: inCart 
                 ?  state.items.map(el => 
                     el.id === action.payload.id 
-                    ? {...el, count: el.count +1} : el)
+                    ? {...el, 
+                        count: el.count +1,
+                        
+                        // available: el.available - 1
+                    } 
+                    : el)
                 : [...state.items, action.payload],///РАЗБЕРИСЬ?
 
                     // priceCount: state.items > 0 
@@ -96,9 +100,9 @@ export const cartReducer = (state = defaultState, action) => {
                 )
             ///УБРАТЬ КОСТЫЛИ
             return {...state, 
-                items: state.items.filter(el => el.id !== action.payload),
-                // itemsCount: state.itemsCount = null,
-                // priceCount: state.priceCount - inc,
+                items: state.items.filter(el => el.id !== action.payload.id),
+                itemsCount: state.itemsCount - action.payload.count,
+                priceCount: state.priceCount - action.payload.totalPrice,
             }
 
             default:
@@ -122,7 +126,11 @@ export const clearCartAction = payload => ({
     type: CLEAR_CART,
     payload
 })
-export const deletetAction = payload => ({
+export const deletetAction = (id, count, totalPrice) => ({
     type: DELETE_ITEM,
-    payload
+    payload: {
+        id,
+        count,
+        totalPrice,
+    },
 })

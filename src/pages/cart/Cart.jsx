@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import style from "./cart.module.scss";
 
@@ -13,6 +13,7 @@ import {
 } from "../../redux/reducers/cartReducer";
 
 const Cart = () => {
+  const history = useNavigate()
   const cards = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
 
@@ -57,9 +58,10 @@ const Cart = () => {
       )}
       {cartItem < 1 ? (
         <div className={style.one__btn}>
-          <Link to="/">
-            <Button name={"Вернуться назад"} />
-          </Link>
+          {/* <Link to="/"> */}
+            <Button name={"Вернуться назад"} action={history}/>
+            <button onClick={() => history(-1)}>BaCK</button>
+          {/* </Link> */}
         </div>
       ) : (
         <div className={style.row__btn}>

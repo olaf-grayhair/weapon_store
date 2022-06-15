@@ -17,7 +17,7 @@ const CartItem = () => {
     const res = countItems.length > 0 ? countItems.reduce((a, b) => a + b) : []
     console.log(countItems, 'map');
     console.log(res, date.priceCount, 'reduce');
-
+    ///NO NEED
 
   return (
     <Link to="/cart">

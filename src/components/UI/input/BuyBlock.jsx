@@ -15,7 +15,7 @@ const BuyBlock = ({
   const dispatch = useDispatch();
 
   const deleteItem = () => {
-    dispatch(deletetAction(id));
+    dispatch(deletetAction(id, count, (count * price)));
   };
 
   return (
