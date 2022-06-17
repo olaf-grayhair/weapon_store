@@ -4,6 +4,10 @@
     align-items: center;
     width: 46%;
     position: relative;
+    .available{
+        font-size: 14px;
+        max-width: 75px;
+    }
     .inp{
         width: 70px;
         height: 50px;

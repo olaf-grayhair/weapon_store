@@ -26,8 +26,6 @@ export const weaponsReducer = (state = defaultState, action) => {
         case DECREASE_AVAILABLE:
             return {...state, 
                 items: state.items.map(el => 
-                    // console.log(`el.id${el.id}==a.p.id${action.payload}`))
-
                     el.id === action.payload 
                     ?  {...el, available: el.available -1}
                     : el )

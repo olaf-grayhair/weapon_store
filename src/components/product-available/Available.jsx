@@ -1,5 +1,5 @@
 import {React, useEffect, useState} from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { availableAction } from '../../redux/reducers/filters';
 import style from './available.module.scss'
 
@@ -12,13 +12,15 @@ const Available = () => {
         dispatch(availableAction(available))///FIX JSON ?
     }, [available]);
 
-    // console.log(state, available);
+    const setAvailable = () => {
+        setstate(!state)
+    }
     return (
         <div className={style.available}>
             <span>В наличии:</span>
             <input type="checkbox" 
             checked={state} 
-            onChange={() => setstate(!state)}/>
+            onChange={setAvailable}/>
         </div>
     );
 }

@@ -2,95 +2,113 @@ import { React, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import style from "./weapon.module.scss";
+
 import { fetchOnePage } from "../../redux/action-creators/weapon";
 import Button from "../../components/UI/Button";
+import SceletonPage from "../../components/sceleton-page/SceletonPage";
+import { cartAction } from "../../redux/reducers/cartReducer";
+import BuyBlock from "../../components/UI/input/BuyBlock";
+import { decreaseOneAction } from "../../redux/reducers/onePageReducer";
 
 const WeaponPage = () => {
-  const [state, setState] = useState(1);
-  // const [price, setPrice] = useState(0);
+  const [count, setCount] = useState(1);
+
   const { id } = useParams();
   const dispatch = useDispatch();
-  const { items, loading, price} = useSelector((state) => state.onePage);
-  const cartItems = useSelector((state) => state.cart.items)
+  const { items, loading, isLoading} = useSelector((state) => state.onePage);
 
-  console.log(loading, price, items.available);
+  const {img, name, available, price, text } = useSelector((state) => state.onePage.items) || [];
+  
+  const cart = useSelector((state) => state.cart.items)
   useEffect(() => {
     dispatch(fetchOnePage(id));
-    // if(loading) setPrice(items.price)
   }, [dispatch]);
+  console.log(available);
+  const cartItem = {
+    id,
+    img,
+    name,
+    available,
+    price,
+    count: count,
+  }
+
+  const addToCart = () => {
+    if(count <= available) {
+      setCount(count+1)
+      dispatch(cartAction(cartItem))
+      dispatch(decreaseOneAction(count))
+      setCount(1)
+    }
+  }
 
   if (!items) {
     return <>Загрузка...</>;
   }
+  const isItStr = Number.isInteger(available) 
 
-  //   const increasePrice = (item, itemId) => {
-  //       if(id === itemId) {
-  //         console.log(id, itemId);
-  //         if(state < items.available) {
-  //           setPrice(price + item)
-  //           setState(state+1)
-  //         }
-  //       }
-  // }
+  const increasePrice = () => {
+    if(count < available) setCount(count+1)
+  }
 
-  //   const decreasePrice = (item) => {
-  //       if(items.available >= state && state != 0) {
-  //         setPrice(price - item)
-  //         setState(state-1)
-  //       }
-  // }
+  const decreasePrice = () => {
+    if(count > 1) setCount(count-1)
+  }
 
-  // console.log(state, items.available);
-  // console.log(price, items.price);
-  return (
+  const page = 
     <div className={style.page}>
       <div className={style.header}>
-        <img className={style.img} src={items.img} alt="" />
+        <img className={style.img} src={img} alt="" />
         <div className={style.textBlock}>
-          <h2 className={style.titel}>{items.name}</h2>
+          <h2 className={style.titel}>{name}</h2>
           <div className={style.priceBlock}>
-            <span className={style.price}>{items.price} грн</span>
-            {Number.isInteger(items.available) ? (
-              <span className={style.price}>
-                В наличии: {items.available} шт
-              </span>
-            ) : (
-              "Нет в наличии"
-            )}
+            <span className={style.price}>{price} грн</span>
+            {isItStr && available !== 0
+              ? <span className={style.price}>В наличии: {available} шт</span>
+
+              : "Нет в наличии"
+              }
           </div>
-          <p className={style.text}>{items.text}</p>
+          <p className={style.text}>{text}</p>
           <div className={style.buyBlock}>
             <input
               className={style.inp}
               type="number"
-              value={items.available > 0 ? items.available : 0}
-              onChange={() => setState(state + 1)}
+              placeholder={isItStr ? count : 0}
             />
 
-            <div
-              className={style.arrup}
-              //  onClick={() => increasePrice(items.price, items.id)}
+            <div className={style.arrup} onClick={increasePrice}
             ></div>
 
-            <div
-              className={style.arrdown}
-              // onClick={() => decreasePrice(items.price)}
+            <div className={style.arrdown} onClick={decreasePrice}
             ></div>
-            {typeof items.available !== "string" ? (
-              <div className={style.available}>
-                <b>{price} Грн</b>
-                <Button name={"Купить"} bool={false} />
-              </div>
-            ) : (
-              <div className={style.available}>
-                <b>Нет в наличии</b>
-                <Button name={"Продано"} bool={true} />
-              </div>
-            )}
+            {isItStr && available !== 0
+              ? 
+                <div className={style.available}>
+                  <b>{price * count} Грн</b>
+                  <Button name={"Купить"} bool={false} action={addToCart}/>
+                </div>
+              : 
+                <div className={style.available}>
+                  <b>Нет в наличии</b>
+                  <Button name={"Продано"} bool={true} />
+                </div>
+            }
           </div>
+          <BuyBlock id={id} 
+            count={count} 
+            price={price} 
+            name={"Продано"}
+            increase={increasePrice}
+            decrease={decreasePrice}
+          />
         </div>
       </div>
     </div>
+  return (
+    <>
+      {isLoading ? <SceletonPage/> : page}
+    </>
   );
 };
 

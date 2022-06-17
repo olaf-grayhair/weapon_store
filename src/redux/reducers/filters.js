@@ -7,8 +7,8 @@ const AVAILABLE_ITEMS = 'AVAILABLE_ITEMS'
 const defaultState = {
     category: null,
     sortByPrice: null,
-    seacrh: null,
-    available: false,
+    search: null,
+    available: null,
 }
 
 export const filtersReducer = (state = defaultState ,action) => {

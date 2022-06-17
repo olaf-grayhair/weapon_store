@@ -1,36 +1,26 @@
 import { React, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import style from "./home.module.scss";
+
 import Card from "../../components/card-weapon/Card";
-import Header from "../../components/header/Header";
+import Navbar from '../../components/navbar/Navbar'
 import Pagination from "../../components/pagination/Pagination";
 import Sceleton from "../../components/sceleton/Sceleton";
 import { fetchWeapons } from "../../redux/action-creators/weapons";
 
-import style from "./home.module.scss";
-
-import { curentPageAction } from "../../redux/reducers/weaponsReducer";
 const Home = () => {
-  const weapons = useSelector((state) => state.weapons.items);
-  const loading = useSelector((state) => state.weapons.loading);
-  //ОБЬЕДЕНИТЬ useSElector ?
-  const filter = useSelector((state) => state.filters.sortByPrice)
-  const search = useSelector((state) => state.filters.search)
-  const category = useSelector((state) => state.filters.category)
+  const {filter, search, category, available} = useSelector((state) => state.filters)
 
-  const available = useSelector((state) => state.filters.available)
-  ///ОБЬЕДЕНИТЬ useSElector ?
-  const totalCount = useSelector((state) => state.weapons.totalCount);
-  const perPage = useSelector((state) => state.weapons.perPage);
-  const currentPage = useSelector((state) => state.weapons.currentPage);
- ///ОБЬЕДЕНИТЬ useSElector ?
+  const {currentPage, perPage, totalCount, loading, items} = useSelector((state) => state.weapons);
+
   const dispatch = useDispatch();
-  // console.log(available);
+
   useEffect(() => {
     dispatch(fetchWeapons(category, search, currentPage, perPage, available));
   }, [dispatch, category, search, currentPage, available]);///ПОЧЕМУ 2 РЕНДЕРА?
 
   const sorting = () => {
-    const sortedWeapons = [...weapons]
+    const sortedWeapons = [...items]
 
     if(filter === 'priceDown') {
       sortedWeapons.sort((a, b) => a.price - b.price)
@@ -44,23 +34,22 @@ const Home = () => {
     return sortedWeapons
   }
 
-  const items = sorting().map((el, index) => <Card key={el.id} {...el}/>);
+  const weapons = sorting().map((el, index) => <Card key={el.id} {...el}/>);
   const skeleton = sorting().map((el, index) => <Sceleton key={index}/>);
 
   return (
     <div>
-      {/* <Header /> */}
+      <Navbar/>
       <div className={style.content}>
         <h1 className={style.title}>Weapons</h1>
         <div className={style.content__items}>
-          {loading ? skeleton : items}
+          {loading ? skeleton : weapons}
         </div>
       </div>
       <Pagination 
         currentPage={currentPage}
         totalCount={totalCount}
         perPage={perPage}/>
-
     </div>
   );
 };

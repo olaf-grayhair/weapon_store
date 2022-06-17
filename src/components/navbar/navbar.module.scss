@@ -6,6 +6,7 @@
     .navbar{
         display: flex;
         margin-top: 20px;
+        flex-wrap: wrap;
         
         .item, .item__active{
             font-size: 14px;

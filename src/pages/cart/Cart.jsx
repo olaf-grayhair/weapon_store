@@ -14,6 +14,9 @@ import {
 
 const Cart = () => {
   const history = useNavigate()
+  const returnPrev = () => {
+    history(-1)
+  }
   const cards = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
 
@@ -27,7 +30,6 @@ const Cart = () => {
 
   const decreasePrice = (id) => {
     dispatch(decreaseAction(id));
-    // id > 0 ? dispatch(decreaseAction(id)) : dispatch(decreaseAction());
   };
 
   const cartItem = cards.map((el, index) => (
@@ -37,13 +39,14 @@ const Cart = () => {
         <h3 className={style.name}>{el.name}</h3>
         <BuyBlock
           {...el}
-          increasePrice={increasePrice}
-          decreasePrice={decreasePrice}
+          name={'x'}
+          increase={increasePrice}
+          decrease={decreasePrice}
         />
       </div>
     </div>
   ));
-  console.log(cartItem, "cart !");
+  console.log(cards, "cart !");
 
   return (
     <div className={style.cart}>
@@ -52,24 +55,20 @@ const Cart = () => {
         <div className={style.popup}>
           <h3 className={style.popup__title}>Корзина пустая...</h3>
           <img className={style.crusade} src={crusade} alt="" />
+          <div className={style.one__btn}>
+            <Button name={"Вернуться назад"} action={returnPrev}/>
+          </div>
         </div>
       ) : (
-        cartItem
-      )}
-      {cartItem < 1 ? (
-        <div className={style.one__btn}>
-          {/* <Link to="/"> */}
-            <Button name={"Вернуться назад"} action={history}/>
-            <button onClick={() => history(-1)}>BaCK</button>
-          {/* </Link> */}
-        </div>
-      ) : (
+        <>
+        {cartItem}
         <div className={style.row__btn}>
           <Link to="/">
-            <Button name={"Вернуться назад"} />
+            <Button name={"Вернуться назад"} action={returnPrev}/>
           </Link>
           <Button name={"Очистить корзину"} action={clearCart} />
         </div>
+        </>
       )}
     </div>
   );

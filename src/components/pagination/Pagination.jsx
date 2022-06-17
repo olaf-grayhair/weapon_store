@@ -15,7 +15,6 @@ useEffect(() => {
     dispatch(curentPageAction(state))
 }, [state]);
 
-// console.log(state);
   const pages = pagination(totalCount, perPage).map((el, index) => (
     <span className={currentPage === el 
         ? style.pagination__active

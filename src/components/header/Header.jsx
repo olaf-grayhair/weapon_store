@@ -1,6 +1,5 @@
 import React from 'react';
 import style from "./header.module.scss";
-import Navbar from './Navbar';
 import { Link } from "react-router-dom";
 import Search from "./../search/Search"
 import CartItem from './cart/CartItem';

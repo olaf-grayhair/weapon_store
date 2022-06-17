@@ -18,10 +18,13 @@
         position: relative;
         
         &::before{
-            content: 'Weapon';
+            content: 'W';
             position: absolute;
-            top: 28px;
-            right: 14px;
+            top: 16px;
+            right: 30px;
+            color: aliceblue;
+            font-size: 36px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
         }
     }
 }

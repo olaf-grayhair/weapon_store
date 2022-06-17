@@ -9,8 +9,10 @@ const BuyBlock = ({
   id,
   count,
   price,
-  increasePrice,
-  decreasePrice,
+  available,
+  name,
+  increase,
+  decrease,
 }) => {
   const dispatch = useDispatch();
 
@@ -18,16 +20,28 @@ const BuyBlock = ({
     dispatch(deletetAction(id, count, (count * price)));
   };
 
+  const increaseThePrice = () => {
+    if(count < available) {
+      increase(id)
+    }
+  }
+
+  const decreaseThePrice = () => {
+    decrease(id)
+  }
+
+  
   return (
     <div className={style.buyBlock}>
       <input className={style.inp} type="number" placeholder={count} />
 
-      <div className={style.arrup} onClick={() => increasePrice(id)}></div>
+      <div className={style.arrup} onClick={increaseThePrice}></div>
 
-      <div className={style.arrdown} onClick={() => decreasePrice(id)}></div>
+      <div className={style.arrdown} onClick={decreaseThePrice}></div>
+      <span className={style.available}>{`В Наличии: ${available} Шт`}</span>
       <b>{count * price} Грн</b>
 
-      <Button name={"x"} action={deleteItem} />
+      <Button name={name} action={deleteItem} />
     </div>
   );
 };

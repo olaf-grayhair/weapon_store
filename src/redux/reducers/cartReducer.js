@@ -14,8 +14,7 @@ const defaultState = {
 export const cartReducer = (state = defaultState, action) => {
     switch (action.type) {
         case ADD_TO_CART:
-            const countItems = state.items.map(el => el.price * el.count)
-            const res = countItems.length > 0 ? countItems.reduce((a, b) => a + b) : []
+            const addToPrice = action.payload.price * action.payload.count
 
             const inCart = state.items.find(el => 
                 el.id === action.payload.id ? true : false)///РАЗБЕРИСЬ?
@@ -24,20 +23,12 @@ export const cartReducer = (state = defaultState, action) => {
                 items: inCart 
                 ?  state.items.map(el => 
                     el.id === action.payload.id 
-                    ? {...el, 
-                        count: el.count +1,
-                        
-                        // available: el.available - 1
-                    } 
+                    ? {...el, count: el.count + action.payload.count} 
                     : el)
                 : [...state.items, action.payload],///РАЗБЕРИСЬ?
 
-                    // priceCount: state.items > 0 
-                    // ? state.items.map(el => el.price * el.count).reduce((a, b) => a + b)
-                    // : 0
-                    // ,
-                    priceCount: state.priceCount + action.payload.price,
-                    itemsCount: state.itemsCount + 1
+                    priceCount: state.priceCount + addToPrice,
+                    itemsCount: state.itemsCount + action.payload.count,
             }
 
         case INCREASE_COUNT:

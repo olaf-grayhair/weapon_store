@@ -1,14 +1,15 @@
 import {React, useState, useEffect} from 'react';
-import Filter from '../filter/Filter';
-import style from "./navbar.module.scss";
 import { useDispatch } from 'react-redux';
+import style from "./navbar.module.scss";
+
 import { setAction } from '../../redux/reducers/filters';
-import Available from '../product-available/Available';
+import Available from '../../components/product-available/Available';
+import Filter from '../../components/filter/Filter';
 
 
 
 const Navbar = () => {
-    const categories = ['Все','Алебарда', 'Арбалет', 'Бердыш', 'Бродэкс', 'Гладиус', 'Древко', 'Каролинг', 'Катана', 'Кинжал', 'Клинок', 'Кнут', 'Меч']
+    const categories = ['Все','Алебарда', 'Арбалет', 'Бердыш', 'Бродэкс', 'Гладиус', 'Древко', 'Каролинг', 'Катана', 'Кинжал', 'Клинок', 'Кнут']
     const [state, setstate] = useState('Все');
     const dispatch = useDispatch()
     const category = state === 'Все' ? '' : `&category=${state}`
