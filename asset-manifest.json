@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/weapon_store/static/css/main.b31439ff.css",
-    "main.js": "/weapon_store/static/js/main.cbf1c937.js",
+    "main.js": "/weapon_store/static/js/main.2818bc15.js",
     "static/media/logo.png": "/weapon_store/static/media/logo.4db4b356193a73f5fc2b.png",
     "static/media/cart.png": "/weapon_store/static/media/cart.efca5b9f64bffb1a9826.png",
     "index.html": "/weapon_store/index.html",
     "main.b31439ff.css.map": "/weapon_store/static/css/main.b31439ff.css.map",
-    "main.cbf1c937.js.map": "/weapon_store/static/js/main.cbf1c937.js.map"
+    "main.2818bc15.js.map": "/weapon_store/static/js/main.2818bc15.js.map"
   },
   "entrypoints": [
     "static/css/main.b31439ff.css",
-    "static/js/main.cbf1c937.js"
+    "static/js/main.2818bc15.js"
   ]
 }
