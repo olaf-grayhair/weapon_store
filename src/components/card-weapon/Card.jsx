@@ -9,8 +9,11 @@ import style from "./card.module.scss";
 
 
 const Card = ({id, img, name, price, available}) => {
+<<<<<<< HEAD
   // const history = useNavigate()
   // history.push(`/weapon/${items.name}`)
+=======
+>>>>>>> add github.io
 
   const dispatch = useDispatch()
   const cartItem = {

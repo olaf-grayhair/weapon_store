@@ -5,6 +5,10 @@ import style from "./navbar.module.scss";
 import { setAction } from '../../redux/reducers/filters';
 import Available from '../../components/product-available/Available';
 import Filter from '../../components/filter/Filter';
+<<<<<<< HEAD
+=======
+import { curentPageAction } from '../../redux/reducers/weaponsReducer';
+>>>>>>> add github.io
 
 
 
@@ -16,6 +20,10 @@ const Navbar = () => {
 
     useEffect(() => {
         dispatch(setAction(category))
+<<<<<<< HEAD
+=======
+        dispatch(curentPageAction(1))
+>>>>>>> add github.io
     }, [state]);
 
     return (
