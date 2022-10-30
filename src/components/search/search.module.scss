@@ -1,0 +1,23 @@
+.inputBlock{
+    position: relative;
+
+    .search{
+        border: 2px solid black;
+        background: none;
+        padding: 7.5px 10px;
+        width: 200px;
+        color: whitesmoke;
+        border-radius: 10px;
+    }
+    .delete{
+        color: whitesmoke;
+        position: absolute;
+        top: 8px;
+        right: 9px;
+        cursor: pointer;
+    }
+    .hide{
+        display: none;
+        position: absolute;
+    }
+}

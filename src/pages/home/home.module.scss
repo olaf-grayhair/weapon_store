@@ -1,0 +1,18 @@
+.content{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    .title{
+        font-size: 30px;
+        font-weight: 900;
+        margin-bottom: 20px;
+    }
+    .content__items{
+        // display: flex;
+        // flex-wrap: wrap;
+        display:grid;
+        grid-template-columns: repeat(4, 1fr);
+        align-content: start;
+
+        grid-gap: 5px;
+    }
+}

@@ -1,0 +1,37 @@
+.navbar__wraper{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .navbar{
+        display: flex;
+        margin-top: 20px;
+        flex-wrap: wrap;
+        
+        .item, .item__active{
+            font-size: 14px;
+            min-width: 80px;
+            color: white;
+            background-color: black;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all ease .4s;
+            &:hover{
+                background-color: white;
+                color: black;
+            }
+    
+            &:not(:last-child){
+                margin-right: 10px;
+            }
+    
+        }
+        .item__active{
+            background-color: white;
+            color: black;
+        }
+    }
+}

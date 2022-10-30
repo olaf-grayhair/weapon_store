@@ -1,0 +1,31 @@
+.item, .item__active, .item__block{
+    font-size: 14px;
+    min-width: 80px;
+    color: white;
+    background-color: black;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all ease .4s;
+    &:hover{
+        background-color: white;
+        color: black;
+    }
+
+    &:not(:last-child){
+        margin-right: 10px;
+    }
+
+}
+.item__active{
+    background-color: white;
+    color: black;
+}
+.item__block{
+    // pointer-events: none;
+    cursor: not-allowed;
+    background-color: white;
+    color: black;
+}
