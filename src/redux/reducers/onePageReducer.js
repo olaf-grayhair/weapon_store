@@ -23,10 +23,6 @@ export const onePageReducer = (state = defaultState, action) => {
             return {...state, isLoading: action.payload}
 
         case DECREASE_ONE_AVAILABLE:
-<<<<<<< HEAD
-            debugger
-=======
->>>>>>> add github.io
             return {...state, 
                 items: {...state.items, available: state.items.available - action.payload}//изменить одно знаечение!
             }
