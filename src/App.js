@@ -13,7 +13,7 @@ function App() {
       <div className={style.App}>
         <Header/>
           <Routes>
-            <Route path="/" element={<Home/>} />
+            <Route path="/weapon_store" element={<Home/>} />
             <Route path="/cart" element={<Cart />} />
             <Route exact path="/weapon/:id" element={<WeaponPage/>} />
           </Routes>

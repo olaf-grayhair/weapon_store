@@ -95,13 +95,14 @@ const WeaponPage = () => {
                 </div>
             }
           </div>
-          <BuyBlock id={id} 
+          {/* <BuyBlock id={id} 
+            styles={{width: "70%"}}
             count={count} 
             price={price} 
             name={"Продано"}
             increase={increasePrice}
             decrease={decreasePrice}
-          />
+          /> */}
         </div>
       </div>
     </div>

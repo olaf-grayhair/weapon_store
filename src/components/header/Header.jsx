@@ -7,7 +7,7 @@ import CartItem from './cart/CartItem';
 const Header = () => {
     return (
         <div className={style.header}>
-            <Link to="/">
+            <Link to="/weapon_store">
                 <div className={style.logo}>
                 </div>
             </Link>

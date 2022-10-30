@@ -16,6 +16,7 @@ const Home = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log('work?');
     dispatch(fetchWeapons(category, search, currentPage, perPage, available));
   }, [dispatch, category, search, currentPage, available]);///ПОЧЕМУ 2 РЕНДЕРА?
 
